@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const Quiz = ({ Question, questionIndex, NextQuestion, selectOption }) => {
+const Quiz = ({ Question, questionIndex, NextQuestion, chosenOption }) => {
   //   useEffect(() => {
   //     setInterval(() => {
   //       console.log("hhhh"    );
@@ -17,7 +17,7 @@ const Quiz = ({ Question, questionIndex, NextQuestion, selectOption }) => {
           {currentQuestion &&
             currentQuestion.options.map((option, index) => (
               <li key={`${currentQuestion.id}-${index}`}>
-                <button onClick={() => selectOption(option)}>{option}</button>
+                <button onClick={() => chosenOption(option)}>{option}</button>
               </li>
             ))}
         </ul>

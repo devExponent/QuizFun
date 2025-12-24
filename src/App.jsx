@@ -8,6 +8,7 @@ function App() {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [isFinshed, setIsFinished] = useState(false);
   const [score, setScore] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(null);
   useEffect(() => {
     if (questionIndex >= QUESTIONS.length) {
       setIsFinished(true);
@@ -15,17 +16,22 @@ function App() {
   }, [questionIndex]);
 
   const NextQuestion = () => {
-    setQuestionIndex((prev) => prev + 1);
-  };
-
-  const selectOption = (Selectedoption) => {
     const currentQuestion = QUESTIONS[questionIndex];
-    if (Selectedoption === currentQuestion.correctAnswer) {
-      console.log("right");
-      setScore((dec) => dec + 1);
+    setQuestionIndex((prev) => prev + 1);
+
+    if (selectedOption === null) {
+      console.log("skipped");
+    } else if (selectedOption === currentQuestion.correctAnswer) {
+      console.log("correct");
     } else {
       console.log("wrong");
     }
+
+    setSelectedOption(null);
+  };
+
+  const chosenOption = (option) => {
+    setSelectedOption(option);
   };
 
   // const currentQuestion = QUESTIONS[questionIndex];
@@ -34,6 +40,7 @@ function App() {
     <>
       <Header />
       <h1> {score} </h1>
+      <h1> {selectedOption} </h1>
       {isFinshed ? (
         <Result />
       ) : (
@@ -41,7 +48,7 @@ function App() {
           Question={QUESTIONS}
           questionIndex={questionIndex}
           NextQuestion={NextQuestion}
-          selectOption={selectOption}
+          chosenOption={chosenOption}
         />
       )}{" "}
     </>
