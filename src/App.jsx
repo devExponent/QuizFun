@@ -15,7 +15,7 @@ function App() {
     }
   }, [questionIndex]);
 
-  const NextQuestion = useCallback(() => {
+  const NextQuestion = () => {
     const currentQuestion = QUESTIONS[questionIndex];
 
     if (selectedOption === null) {
@@ -26,7 +26,7 @@ function App() {
     }
     setQuestionIndex((next) => next + 1);
     setSelectedOption(null);
-  }, []);
+  };
 
   const chosenOption = (option) => {
     setSelectedOption(option);
