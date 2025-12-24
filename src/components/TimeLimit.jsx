@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 const Timer = 10000;
-const TimeLimit = ({ NextQuestion }) => {
+const TimeLimit = ({ questionIndex }) => {
   const [timeRemaining, setTimeRemaining] = useState(Timer);
 
   useEffect(() => {
@@ -8,7 +8,7 @@ const TimeLimit = ({ NextQuestion }) => {
       setTimeRemaining((timeleft) => timeleft - 10);
     }, 10);
     return () => clearInterval(timer);
-  }, [NextQuestion]);
+  }, [questionIndex]);
 
   return (
     <div>
