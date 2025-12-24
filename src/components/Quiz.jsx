@@ -1,23 +1,31 @@
 import { useEffect } from "react";
 
 const Quiz = ({ Question, questionIndex, NextQuestion, chosenOption }) => {
-  //   useEffect(() => {
-  //     setInterval(() => {
-  //       console.log("hhhh"    );
-  //       NextQuestion();
-  //     }, 3000);
-  //   }, []);
+  useEffect(() => {
+    const Timer = setTimeout(() => {
+      console.log("hhhh");
+      NextQuestion();
+    }, 10000);
+    return () => clearTimeout(Timer);
+  }, [NextQuestion]);
 
   const currentQuestion = Question[questionIndex];
   return (
     <>
       <div id="quiz">
-        <h1>{currentQuestion && Question[questionIndex].text}</h1>
+        <h1 className="font-bold text-blue-500 text-xl">
+          {currentQuestion && Question[questionIndex].text}
+        </h1>
         <ul className="my-2">
           {currentQuestion &&
             currentQuestion.options.map((option, index) => (
               <li key={`${currentQuestion.id}-${index}`}>
-                <button onClick={() => chosenOption(option)}>{option}</button>
+                <button
+                  onClick={() => chosenOption(option)}
+                  className="hover:bg-stone-500 hover:w-full rounded-2xl p-4"
+                >
+                  {option}
+                </button>
               </li>
             ))}
         </ul>

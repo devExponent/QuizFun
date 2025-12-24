@@ -17,16 +17,14 @@ function App() {
 
   const NextQuestion = () => {
     const currentQuestion = QUESTIONS[questionIndex];
-    setQuestionIndex((prev) => prev + 1);
 
     if (selectedOption === null) {
-      console.log("skipped");
     } else if (selectedOption === currentQuestion.correctAnswer) {
-      console.log("correct");
+      setScore((score) => score + 1);
     } else {
       console.log("wrong");
     }
-
+    setQuestionIndex((next) => next + 1);
     setSelectedOption(null);
   };
 
@@ -50,7 +48,7 @@ function App() {
           NextQuestion={NextQuestion}
           chosenOption={chosenOption}
         />
-      )}{" "}
+      )}
     </>
   );
 }
