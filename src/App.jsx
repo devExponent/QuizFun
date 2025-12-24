@@ -3,6 +3,7 @@ import Header from "./components/Header.jsx";
 import { useState, useEffect, useCallback } from "react";
 import Quiz from "./components/Quiz.jsx";
 import Result from "./components/Result.jsx";
+import TimeLimit from "./components/TimeLimit.jsx";
 
 function App() {
   const [questionIndex, setQuestionIndex] = useState(0);

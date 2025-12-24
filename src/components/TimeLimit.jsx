@@ -8,7 +8,7 @@ const TimeLimit = ({ questionIndex }) => {
       setTimeRemaining((timeleft) => timeleft - 10);
     }, 10);
     return () => clearInterval(timer);
-  }, [questionIndex]);
+  }, []);
 
   return (
     <div>

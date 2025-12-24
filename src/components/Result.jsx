@@ -1,11 +1,13 @@
 import React from "react";
+import { QUESTIONS } from "../QUESTION_BANKS";
 
 const Result = ({ score }) => {
+  let finalAnswer = (score / QUESTIONS.length) * 100;
   return (
     <div>
       <dialog open>
         <p>Your Score is</p>
-        {score}
+        {finalAnswer} %
       </dialog>
     </div>
   );

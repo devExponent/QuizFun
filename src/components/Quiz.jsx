@@ -2,19 +2,19 @@ import { useEffect } from "react";
 import TimeLimit from "./TimeLimit";
 
 const Quiz = ({ Question, questionIndex, NextQuestion, chosenOption }) => {
-  useEffect(() => {
-    const Timer = setTimeout(() => {
-      console.log("hhhh");
-      NextQuestion();
-    }, 10000);
-    return () => clearTimeout(Timer);
-  }, [NextQuestion]);
+  // useEffect(() => {
+  //   const Timer = setTimeout(() => {
+  //     console.log("hhhh");
+  //     NextQuestion();
+  //   }, 10000);
+  //   return () => clearTimeout(Timer);
+  // }, [NextQuestion]);
 
   const currentQuestion = Question[questionIndex];
   return (
     <>
       <div id="quiz">
-        <TimeLimit questionIndex={questionIndex} />
+        {/* <TimeLimit questionIndex={currentQuestion} /> */}
         <h1 className="font-bold text-blue-500 text-xl">
           {currentQuestion && Question[questionIndex].text}
         </h1>
