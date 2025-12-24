@@ -1,10 +1,11 @@
 import React from "react";
 
-const Result = () => {
+const Result = ({ score }) => {
   return (
     <div>
       <dialog open>
-        <p>dnjdnjdnjndjdnsjkn</p>
+        <p>Your Score is</p>
+        {score}
       </dialog>
     </div>
   );

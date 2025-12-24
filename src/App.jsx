@@ -40,7 +40,7 @@ function App() {
       <h1> {score} </h1>
       <h1> {selectedOption} </h1>
       {isFinshed ? (
-        <Result />
+        <Result score={score} />
       ) : (
         <Quiz
           Question={QUESTIONS}
