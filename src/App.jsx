@@ -1,6 +1,6 @@
 import { QUESTIONS } from "../src/QUESTION_BANKS.js";
 import Header from "./components/Header.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Quiz from "./components/Quiz.jsx";
 import Result from "./components/Result.jsx";
 
@@ -15,7 +15,7 @@ function App() {
     }
   }, [questionIndex]);
 
-  const NextQuestion = () => {
+  const NextQuestion = useCallback(() => {
     const currentQuestion = QUESTIONS[questionIndex];
 
     if (selectedOption === null) {
@@ -26,7 +26,7 @@ function App() {
     }
     setQuestionIndex((next) => next + 1);
     setSelectedOption(null);
-  };
+  }, []);
 
   const chosenOption = (option) => {
     setSelectedOption(option);

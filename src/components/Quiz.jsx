@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import TimeLimit from "./TimeLimit";
 
 const Quiz = ({ Question, questionIndex, NextQuestion, chosenOption }) => {
   useEffect(() => {
@@ -13,6 +14,7 @@ const Quiz = ({ Question, questionIndex, NextQuestion, chosenOption }) => {
   return (
     <>
       <div id="quiz">
+        <TimeLimit NextQuestion={NextQuestion} />
         <h1 className="font-bold text-blue-500 text-xl">
           {currentQuestion && Question[questionIndex].text}
         </h1>
