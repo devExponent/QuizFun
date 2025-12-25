@@ -8,10 +8,12 @@ function App() {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const [isFinshed, setIsFinished] = useState(false);
-  const [score, setScore] = useState(0);
-  const [ommitted, setOmmitted] = useState(0);
-  const [wrong, setWronng] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [quizStats, setQuizStats] = useState({
+    correct: 0,
+    wrong: 0,
+    omitted: 0,
+  });
   useEffect(() => {
     if (questionIndex >= QUESTIONS.length) {
       setIsFinished(true);
@@ -21,13 +23,15 @@ function App() {
   const NextQuestion = () => {
     const currentQuestion = QUESTIONS[questionIndex];
 
-    if (selectedOption === null) {
-      setOmmitted((ommittedQues) => ommittedQues + 1);
-    } else if (selectedOption === currentQuestion.correctAnswer) {
-      setScore((score) => score + 1);
-    } else {
-      setWronng((wrongOpt) => wrongOpt + 1);
-    }
+    setQuizStats((prev) => {
+      if (selectedOption === null) {
+        return { ...prev, omitted: prev.omitted + 1 };
+      } else if (selectedOption === currentQuestion.correctAnswer) {
+        return { ...prev, correct: prev.correct + 1 };
+      } else {
+        return { ...prev, wrong: prev.wrong + 1 };
+      }
+    });
     setQuestionIndex((next) => next + 1);
     setSelectedOption(null);
   };
@@ -48,7 +52,7 @@ function App() {
       <Header />
 
       {isFinshed ? (
-        <Result score={score} ommitted={ommitted} wrong={wrong} />
+        <Result stats={quizStats} />
       ) : !hasStarted ? (
         <div className="flex items-center justify-center min-h-screen">
           <button

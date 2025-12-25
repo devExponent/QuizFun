@@ -2,9 +2,10 @@ import React from "react";
 import { QUESTIONS } from "../QUESTION_BANKS";
 import { Score } from "../CALCULATE_SCORE";
 
-const Result = ({ score, ommitted, wrong }) => {
-  const finalScore = Score(score, QUESTIONS.length);
-  const ommittedQuestions = Score(ommitted, QUESTIONS.length);
+const Result = ({ stats }) => {
+  const { correct, omitted, wrong } = stats;
+  const finalScore = Score(correct, QUESTIONS.length);
+  const ommitedQuestions = Score(omitted, QUESTIONS.length);
   const wrongAnswers = Score(wrong, QUESTIONS.length);
   return (
     <div className="">
@@ -18,7 +19,7 @@ const Result = ({ score, ommitted, wrong }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 text-center gap-3 my-4">
           <div className="flex flex-col text-red-500">
-            <p className="font-bold text-3xl ">{ommittedQuestions} %</p>
+            <p className="font-bold text-3xl ">{ommitedQuestions} %</p>
             <p>SKIPPED</p>
           </div>
           <div className="flex flex-col text-green-500">
