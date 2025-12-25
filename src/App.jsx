@@ -3,10 +3,10 @@ import Header from "./components/Header.jsx";
 import { useState, useEffect, useCallback } from "react";
 import Quiz from "./components/Quiz.jsx";
 import Result from "./components/Result.jsx";
-import TimeLimit from "./components/TimeLimit.jsx";
 
 function App() {
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
   const [isFinshed, setIsFinished] = useState(false);
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -33,6 +33,11 @@ function App() {
     setSelectedOption(option);
   };
 
+  const start = () => {
+    setHasStarted(true);
+    setQuestionIndex(0);
+  };
+
   // const currentQuestion = QUESTIONS[questionIndex];
 
   return (
@@ -40,8 +45,18 @@ function App() {
       <Header />
       <h1> {score} </h1>
       <h1> {selectedOption} </h1>
+
       {isFinshed ? (
         <Result score={score} />
+      ) : !hasStarted ? (
+        <div className="flex items-center justify-center min-h-screen">
+          <button
+            onClick={start}
+            className="px-6 py-2 bg-blue-500 text-white rounded"
+          >
+            Start Quiz
+          </button>
+        </div>
       ) : (
         <Quiz
           Question={QUESTIONS}

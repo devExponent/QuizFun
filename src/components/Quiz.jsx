@@ -8,7 +8,7 @@ const Quiz = ({ Question, questionIndex, NextQuestion, chosenOption }) => {
       NextQuestion();
     }, 10000);
     return () => clearTimeout(Timer);
-  }, [NextQuestion]);
+  }, [questionIndex]);
 
   const currentQuestion = Question[questionIndex];
   return (
