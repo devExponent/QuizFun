@@ -4,11 +4,12 @@ const TimeLimit = ({ questionIndex }) => {
   const [timeRemaining, setTimeRemaining] = useState(Timer);
 
   useEffect(() => {
+    setTimeRemaining(Timer);
     const timer = setInterval(() => {
       setTimeRemaining((timeleft) => timeleft - 10);
     }, 10);
     return () => clearInterval(timer);
-  }, []);
+  }, [questionIndex]);
 
   return (
     <div>
