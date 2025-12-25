@@ -46,11 +46,7 @@ function App() {
   return (
     <>
       <Header />
-      <h1> {score} right </h1>
-      {ommitted} ommitted
-      <br />
-      {wrong} wrong
-      <h1> {selectedOption} </h1>
+
       {isFinshed ? (
         <Result score={score} ommitted={ommitted} wrong={wrong} />
       ) : !hasStarted ? (
