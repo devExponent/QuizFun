@@ -9,6 +9,8 @@ function App() {
   const [hasStarted, setHasStarted] = useState(false);
   const [isFinshed, setIsFinished] = useState(false);
   const [score, setScore] = useState(0);
+  const [ommitted, setOmmitted] = useState(0);
+  const [wrong, setWronng] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   useEffect(() => {
     if (questionIndex >= QUESTIONS.length) {
@@ -20,10 +22,11 @@ function App() {
     const currentQuestion = QUESTIONS[questionIndex];
 
     if (selectedOption === null) {
+      setOmmitted((ommittedQues) => ommittedQues + 1);
     } else if (selectedOption === currentQuestion.correctAnswer) {
       setScore((score) => score + 1);
     } else {
-      console.log("wrong");
+      setWronng((wrongOpt) => wrongOpt + 1);
     }
     setQuestionIndex((next) => next + 1);
     setSelectedOption(null);
@@ -43,16 +46,18 @@ function App() {
   return (
     <>
       <Header />
-      <h1> {score} </h1>
+      <h1> {score} right </h1>
+      {ommitted} ommitted
+      <br />
+      {wrong} wrong
       <h1> {selectedOption} </h1>
-
       {isFinshed ? (
-        <Result score={score} />
+        <Result score={score} ommitted={ommitted} wrong={wrong} />
       ) : !hasStarted ? (
         <div className="flex items-center justify-center min-h-screen">
           <button
             onClick={start}
-            className="px-6 py-2 bg-blue-500 text-white rounded"
+            className="px-6 py-2 bg-red-500 text-white rounded"
           >
             Start Quiz
           </button>
