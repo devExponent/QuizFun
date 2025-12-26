@@ -9,6 +9,7 @@ function App() {
   const [hasStarted, setHasStarted] = useState(false);
   const [isFinshed, setIsFinished] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [userAnswers, setUserAnswers] = useState([]);
   const [quizStats, setQuizStats] = useState({
     correct: 0,
     wrong: 0,
@@ -32,6 +33,17 @@ function App() {
         return { ...prev, wrong: prev.wrong + 1 };
       }
     });
+
+    setUserAnswers((prev) => {
+      return [
+        ...prev,
+        {
+          questions: currentQuestion.text,
+          answers: selectedOption ?? "No answer selected",
+        },
+      ];
+    });
+
     setQuestionIndex((next) => next + 1);
     setSelectedOption(null);
   };
@@ -52,7 +64,7 @@ function App() {
       <Header />
 
       {isFinshed ? (
-        <Result stats={quizStats} />
+        <Result stats={quizStats} userAnswers={userAnswers} />
       ) : !hasStarted ? (
         <div className="flex items-center justify-center min-h-screen">
           <button
