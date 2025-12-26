@@ -46,7 +46,7 @@ const Result = ({ stats, userAnswers }) => {
                     : "text-green-500"
                 }
               >
-                {item.answers}{" "}
+                {item.answers}
               </h2>
             </div>
           ))}
